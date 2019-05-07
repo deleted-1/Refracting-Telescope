@@ -25,3 +25,5 @@ def main():
 
 main()
 pg.quit()
+
+print("HELLO WORLD!")
