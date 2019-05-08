@@ -1,9 +1,5 @@
 import pygame as pg
-import math
-
-class Rays:
-    def __init__(self):
-        pass
+from math import *
 
 def main():
     screen = pg.display.set_mode((640,480))
@@ -20,11 +16,10 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:   break
 
-        pg.draw.line(background,(0,0,0),[100,240],[540, 240],3)    
-        pg.draw.arc(background,(255,0,0),[540,150,50,200],     .05,   -.05, 2)    
+        pg.draw.arc(background,(0,0,0),[200,150,350,300],  pi/2,     pi, 2)
+        pg.draw.arc(background,(255,0,0),[100,100,200,200],     1,   -1, 2)     
         screen.blit(background, (0,0))
         pg.display.flip()
 
 main()
 pg.quit()
-
