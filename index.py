@@ -33,7 +33,7 @@ def main():
         pg.draw.ellipse(background,(255,255,0),[350,90+70,25,150],0)
         pg.draw.ellipse(background,(255,255,0),[450,140+50,25,100],0)
         
-        #screen.blit(tree, (290, 190))
+        screen.blit(tree, (290, 190))
         screen.blit(background, (0,0))
         pg.display.flip()
 
