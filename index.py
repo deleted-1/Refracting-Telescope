@@ -14,6 +14,9 @@ def main():
     distance_object = 5
     clock = pg.time.Clock()
 
+    tree = pygame.image.load("tree.jpg")
+    tree = tree.convert()
+
     
     while True:
         clock.tick(60)
@@ -27,6 +30,7 @@ def main():
         pg.draw.line(background,(0,0,0),[100,240],[540, 240],3)
         pg.draw.ellipse(background,(255,255,0),[350,90+70,25,150],0)
         pg.draw.ellipse(background,(255,255,0),[450,140+50,25,100],0)    
+        screen.blit(tree, (290, 190))
         screen.blit(background, (0,0))
         pg.display.flip()
 
