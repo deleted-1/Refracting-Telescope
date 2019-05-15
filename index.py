@@ -14,8 +14,8 @@ def main():
     distance_object = 5
     clock = pg.time.Clock()
 
-    #tree = pygame.image.load("tree.jpg")
-    #tree = tree.convert()
+    tree = pygame.image.load("download.jpg")
+    tree = tree.convert()
 
     
     while True:
