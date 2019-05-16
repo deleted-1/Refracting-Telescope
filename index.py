@@ -2,8 +2,7 @@ import pygame as pg
 import math
 
 class Rays:
-    def __init__(self,location=[],destination=[]):
-        self.location = location
+    def __init__(self,destination=[]):
         self.destination = destination
 
 def main():
@@ -14,8 +13,10 @@ def main():
     distance_object = 5
     clock = pg.time.Clock()
 
-    tree = pg.image.load("download.jpg")
+    tree = pg.image.load("tree.jpg")
     tree = tree.convert()
+
+    rays1 = Rays([33])
 
     
     while True:
@@ -33,8 +34,10 @@ def main():
         pg.draw.ellipse(background,(255,255,0),[350,90+70,25,150],0)
         pg.draw.ellipse(background,(255,255,0),[450,140+50,25,100],0)
         
-        screen.blit(tree, (290, 190))
+        
         screen.blit(background, (0,0))
+        screen.blit(tree, (100, 100))
+
         pg.display.flip()
 
 
