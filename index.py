@@ -40,18 +40,14 @@ def main():
         pg.draw.line(background,(0,0,0),[100,165],[360, 165],3)
         pg.draw.line(background,(0,0,0),[360,165],[440, 270],3)
         pg.draw.line(background,(0,0,0),[100,240],[540, 240],3)
-<<<<<<< HEAD
+
         pg.draw.ellipse(background,(255,255,0),[350,90+70,25,150],0)
         pg.draw.ellipse(background,(255,255,0),[450,140+50,25,100],0)
         
         #screen.blit(tree, (290, 190))
-=======
-        pg.draw.ellipse(background,(255, 255, 255),[350,90+70,25,150],0)
-        pg.draw.ellipse(background,(255, 255, 255),[450,140+50,25,100],0)
-        
->>>>>>> 6ef3979c37b985ce3a33e6616dcede06d1655bdd
+
         screen.blit(background, (0,0))
-        screen.blit(tree, (object_x, object_y))
+        screen.blit(tree, (100, 100))
         pg.display.flip()
 
 print("Type 1 for the object to be past 2 times the focal point")
@@ -60,17 +56,7 @@ print("Type 3 for the object to be between 2 times the focal point and the focal
 print("Type 4 for the object to be at the focal point")
 
 
-<<<<<<< HEAD
+
 main()
-=======
-location = int(input("Where would you like the object to be located? "))
 
-if location == 1:
-    main(50, 100)
-elif location == 2:
-    main(100, 100)
-elif location == 3:
-    main(150, 100)
-
->>>>>>> 6ef3979c37b985ce3a33e6616dcede06d1655bdd
 pg.quit()
