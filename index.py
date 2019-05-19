@@ -11,7 +11,7 @@ class Rays:
     def change_course():
         pass
 
-def main():
+def main(object_x, object_y):
     screen = pg.display.set_mode((1000,900))
 
     pg.display.set_caption("Refracting Telescope")
@@ -23,10 +23,6 @@ def main():
     tree = pg.image.load("tree.jpg")
     tree = tree.convert()
 
-    #tree = pygame.image.load("tree.jpg")
-    #tree = tree.convert()
-
-    
     while True:
         clock.tick(60)
         """"background = pg.Surface(screen.get_size())
@@ -43,11 +39,9 @@ def main():
 
         pg.draw.ellipse(background,(255,255,0),[350,90+70,25,150],0)
         pg.draw.ellipse(background,(255,255,0),[450,140+50,25,100],0)
-        
-        #screen.blit(tree, (290, 190))
 
         screen.blit(background, (0,0))
-        screen.blit(tree, (100, 100))
+        screen.blit(tree, (object_x, object_y))
         pg.display.flip()
 
 print("Type 1 for the object to be past 2 times the focal point")
@@ -55,8 +49,13 @@ print("Type 2 for the object to be at 2 times the focal point")
 print("Type 3 for the object to be between 2 times the focal point and the focal point")
 print("Type 4 for the object to be at the focal point")
 
+location = int(input("Where would you like the object to be located? "))
 
-
-main()
+if location == 1:
+    main(50, 100)
+elif location == 2:
+    main(100, 100)
+elif location == 3:
+    main(150, 100)
 
 pg.quit()
