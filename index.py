@@ -34,6 +34,12 @@ class Rays:
             self.y += self.movement[1]
         else:   self.change_course(background,focal_point)
         
+    def run2(self,background,focal_point):
+        pg.draw.line(background,(0,0,0),self.location,[self.x,self.y],3)
+        if self.x < self.destination[0]:
+            self.x += self.movement[0]
+            self.y -= self.movement[1]
+        else:   self.change_course(background,focal_point)
     
 
 def main():
@@ -43,12 +49,14 @@ def main():
 
     height_object = 70
     distance_object = 140
+    center = [510, 450]
     clock = pg.time.Clock()
     tree = pg.image.load("tree.png")
     tree = pg.transform.scale(tree, [height_object,height_object])
     tree = tree.convert()
 
     ray1 = Rays([distance_object+height_object/2,450-height_object],[500,450-height_object])
+    ray2 = Rays([0, 350],[500,232])
     
     
     
@@ -80,17 +88,14 @@ def main():
 
         objective = pg.draw.ellipse(background,(255,255,0),[500,300+75,25,150],0)
         ocular = pg.draw.ellipse(background,(255,255,0),[700,350+50,25,100],0)
+        pg.draw.circle(background,(0,0,0),center,5)
 
-        ray1.run(background,focal_objective2)
+        ray1.run1(background,focal_objective2)
+        ray2.run2(background,focal_objective2)
 
         screen.blit(background, (0,0))
         screen.blit(tree, (distance_object, 450-height_object))
         pg.display.flip()
-
-"""print("Type 1 for the object to be past 2 times the focal point")
-print("Type 2 for the object to be at 2 times the focal point")
-print("Type 3 for the object to be between 2 times the focal point and the focal point")
-print("Type 4 for the object to be at the focal point")"""
 
 main()
 
