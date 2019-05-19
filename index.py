@@ -19,15 +19,15 @@ def main(object_x, object_y):
     height_object = 10
     distance_object = 5
     clock = pg.time.Clock()
-    background = pg.image.load("epic.jpg")
+    
     tree = pg.image.load("tree.jpg")
     tree = tree.convert()
 
     while True:
         clock.tick(60)
-        """"background = pg.Surface(screen.get_size())
+        background = pg.Surface(screen.get_size())
         background = background.convert()
-        background.fill((136, 204, 226))"""
+        background.fill((136, 204, 226))
         pg.transform.smoothscale(background, (1000,900))
 
         for event in pg.event.get():
