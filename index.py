@@ -46,17 +46,18 @@ def main():
 
     height_object = 70
     distance_object = 140
-    center = [510, 450]
     clock = pg.time.Clock()
     tree = pg.image.load("tree.png")
     tree = pg.transform.scale(tree, [height_object,height_object])
     tree = tree.convert()
+    center_curvature1 = [512, 450]
+    center_curvature2 = [712, 450]
     focal_objective1 = [500-75,450]
-    focal_objective2 = [500+100,450]
+    focal_objective2 = [500+150,450]
     focal_ocular1 = [700-50,450] 
     focal_ocular2 = [700+75,450]
 
-    ray1 = Rays([distance_object+height_object/2,450-height_object],[500,450-height_object],focal_objective2)
+    ray1 = Rays([distance_object+height_object/2,450-height_object],[510,450-height_object],focal_objective2)
     #ray2 = Rays([0, 350],[500,232])
     
     
@@ -72,11 +73,6 @@ def main():
 
         pg.draw.line(background,(0,0,0),[100,450],[900, 450],3) # Boundary/Plane
 
-        pg.draw.circle(background,(0,0,0),focal_objective1,5)
-        pg.draw.circle(background,(0,0,0),focal_objective2,5)
-        pg.draw.circle(background,(0,0,0),focal_ocular1,5)
-        pg.draw.circle(background,(0,0,0),focal_ocular2,5)
-
         objective_distance = []
         objective_height = []
         ocular_distance = []
@@ -84,7 +80,13 @@ def main():
 
         objective = pg.draw.ellipse(background,(255,255,0),[500,300+75,25,150],0)
         ocular = pg.draw.ellipse(background,(255,255,0),[700,350+50,25,100],0)
-        pg.draw.circle(background,(0,0,0),center,5)
+        pg.draw.circle(background,(0,0,0),center_curvature1,5)
+        pg.draw.circle(background,(0,0,0),center_curvature2,5)
+        pg.draw.circle(background,(0,0,0),focal_objective1,5)
+        pg.draw.circle(background,(0,0,0),focal_objective2,5)
+        pg.draw.circle(background,(0,0,0),focal_ocular1,5)
+        pg.draw.circle(background,(0,0,0),focal_ocular2,5)
+
 
         ray1.run(background)
 
