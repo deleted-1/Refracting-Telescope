@@ -93,4 +93,5 @@ print("Type 3 for the object to be between 2 times the focal point and the focal
 print("Type 4 for the object to be at the focal point")"""
 
 main()
+
 pg.quit()
