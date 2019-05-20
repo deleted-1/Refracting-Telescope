@@ -20,7 +20,7 @@ class ImageLocationGUI:
         self.kilo_entry.pack(side='left')
         
         self.calc_button = tkinter.Button(self.bottom_frame, \
-        text='Convert', \
+        text='Submit', \
         command=self.display)
         self.quit_button = tkinter.Button(self.bottom_frame, \
         text='Quit', \
@@ -43,4 +43,4 @@ class ImageLocationGUI:
     def display(self):
         pass
     
-kilo_conv = KiloConverterGUI()
+image_locate = ImageLocationGUI()
