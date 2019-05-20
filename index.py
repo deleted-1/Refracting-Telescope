@@ -88,8 +88,8 @@ def main():
 
     ray1 = Rays( [distance_object+int(height_object/2),450-height_object] , [center_curvature1[0],450-height_object] , destination1 , destination2)
 
-    destination1 = [focal_objective1[0],focal_objective1[1],center_curvature1[0]]
-    ray2 = Rays ([distance_object+int(height_object/2),450-height_object],destination1,[center_curvature2[0],destination1[1]], destination2)
+    destination1 = [focal_objective1[0], focal_objective1[1], center_curvature1[0]]
+    ray2 = Rays ([distance_object+int(height_object/2),450-height_object],destination1,[500,510], destination2)#I changed the coordinates: [center_curvature2[0],destination1[1]]
     background = pg.Surface(screen.get_size())
     background = background.convert()
     background.fill((210 , 180 , 140))   
