@@ -40,7 +40,6 @@ class Rays:
         self.movement = [(destination[0]-location[0])/60,(destination[1]-location[1])/60]
         self.x = location[0]
         self.y = location[1]
-        self.print_again = True
 
     def change_course(self,background):
         self.location = self.destination
@@ -58,9 +57,6 @@ class Rays:
         if self.x <= self.destination[0]: 
             self.x += self.movement[0]
             self.y += self.movement[1]
-            if self.x>=412 and self.print_again: 
-                print(self.y)
-                self.print_again = False
         else:   
             if self.destination1 != None:   self.change_course(background)
 
@@ -71,15 +67,15 @@ def main():
     pg.display.set_caption("Refracting Telescope")
 
     height_object = 70
-    distance_object = 140
+    distance_object = 200
     clock = pg.time.Clock()
     tree = pg.image.load("tree.png")
     tree = pg.transform.scale(tree, [height_object,height_object])
     tree = tree.convert()  
-    height_objective = 210
-    height_ocular = 150 
-    distance_objective  =400
-    distance_ocular = 600
+    height_objective = 250
+    height_ocular = 200 
+    distance_objective = 400
+    distance_ocular = 550
     center_curvature1 = [distance_objective+12, 450]
     center_curvature2 = [distance_ocular+12, 450]
     focal_objective1 = [distance_objective-int(height_objective/4),450]
@@ -87,13 +83,27 @@ def main():
     focal_ocular1 = [distance_ocular-int(height_ocular/4),450] 
     focal_ocular2 = [distance_ocular+int(height_ocular/4+25),450]  
 
-    destination1 = [focal_objective2[0],focal_objective2[1]] 
-    destination2 = [focal_ocular2[0],focal_ocular2[1]]
+    final_destination = [focal_ocular2[0],focal_ocular2[1]]
 
-    ray1 = Rays( [distance_object+int(height_object/2),450-height_object] , [center_curvature1[0],450-height_object] , destination1 , destination2)
+    slope = [(focal_objective2[0]-center_curvature1[0])/60,(focal_objective2[1]-450-height_object)/60]
+    x = focal_objective2[0]
+    y = focal_objective2[1]
+    while x < center_curvature2[0]:
+        x+= slope[0]
+        y-= slope[1]
 
-    destination1 = [focal_objective1[0], focal_objective1[1], center_curvature1[0]]
-    ray2 = Rays ([distance_object+int(height_object/2),450-height_object],destination1,[412,450+25],[distance_ocular+12,450+25] ,destination2)#I changed the coordinates: [center_curvature2[0],destination1[1]]
+
+    ray1 = Rays( [distance_object+int(height_object/2),450-height_object] , [center_curvature1[0],450-height_object] , [x,y] , final_destination)
+
+
+    slope = [(distance_objective-int(height_objective/4)-(distance_object+int(height_object/2)))/60,(450-450-height_object)/60]
+    x = distance_objective-int(height_objective/4) 
+    y = 450
+    while x < center_curvature1[0]:
+        x += slope[0]
+        y -= slope[1]
+
+    ray2 = Rays ([distance_object+int(height_object/2),450-height_object],[x,y],[center_curvature2[0],y],final_destination)#I changed the coordinates: [center_curvature2[0],destination1[1]]
     background = pg.Surface(screen.get_size())
     background = background.convert()
     background.fill((210 , 180 , 140))   
