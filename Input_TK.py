@@ -43,4 +43,4 @@ class ImageLocationGUI:
     def display(self):
         pass
     
-kilo_conv = KiloConverterGUI()
+image_locate = ImageLocationGUI()
