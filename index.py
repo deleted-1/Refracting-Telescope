@@ -40,6 +40,7 @@ class Rays:
         self.movement = [(destination[0]-location[0])/60,(destination[1]-location[1])/60]
         self.x = location[0]
         self.y = location[1]
+        self.print_again = True
 
     def change_course(self,background):
         self.location = self.destination
@@ -57,6 +58,9 @@ class Rays:
         if self.x <= self.destination[0]: 
             self.x += self.movement[0]
             self.y += self.movement[1]
+            if self.x>=412 and self.print_again: 
+                print(self.y)
+                self.print_again = False
         else:   
             if self.destination1 != None:   self.change_course(background)
 
@@ -89,7 +93,7 @@ def main():
     ray1 = Rays( [distance_object+int(height_object/2),450-height_object] , [center_curvature1[0],450-height_object] , destination1 , destination2)
 
     destination1 = [focal_objective1[0], focal_objective1[1], center_curvature1[0]]
-    ray2 = Rays ([distance_object+int(height_object/2),450-height_object],destination1,[500,510], destination2)#I changed the coordinates: [center_curvature2[0],destination1[1]]
+    ray2 = Rays ([distance_object+int(height_object/2),450-height_object],destination1,[412,450+25],[distance_ocular+12,450+25] ,destination2)#I changed the coordinates: [center_curvature2[0],destination1[1]]
     background = pg.Surface(screen.get_size())
     background = background.convert()
     background.fill((210 , 180 , 140))   
@@ -121,7 +125,7 @@ def main():
         screen.blit(tree, (distance_object, 450-height_object))
         pg.display.flip()
 
-
+"""
 from tkinter import *
 
 root = Tk()
@@ -137,9 +141,9 @@ def Submit():
     print(str(name.get()))
 
 work = Button(root, text="Work",width=30,height=5,bg="lightblue",command=Submit).place(x=250,y=300)
-
+"""
 main()
-root.mainloop()
+"""root.mainloop()"""
 
 
 pg.quit()
