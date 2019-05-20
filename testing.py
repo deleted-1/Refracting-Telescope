@@ -1,25 +1,18 @@
-import pygame as pg
-from math import *
+from tkinter import *
 
-def main():
-    screen = pg.display.set_mode((640,480))
-    pg.display.set_caption("Refracting Telescope")
+root = Tk()
+root.title("Refracting Telescope")
+root.geometry("640x640+0+0")
 
-    clock = pg.time.Clock()
-    
-    while True:
-        clock.tick(60)
-        background = pg.Surface(screen.get_size())
-        background = background.convert()
-        background.fill((136, 204, 226))
+heading = Label(root, text="Refracting Telescope Simulating", font=("arial",40,"bold"), fg="steelblue").pack()
 
-        for event in pg.event.get():
-            if event.type == pg.QUIT:   break
+name = StringVar()
+entry_box = Entry(root, textvariable=name,width=25,bg="lightgreen").place(x=300,y=200)
 
-        pg.draw.arc(background,(0,0,0),[200,150,350,300],  pi/2,     pi, 2)
-        pg.draw.arc(background,(255,0,0),[100,100,200,200],     1,   -1, 2)     
-        screen.blit(background, (0,0))
-        pg.display.flip()
+def Submit():
+    print(str(name.get()))
+work = Button(root, text="Work",width=30,height=5,bg="lightblue",command=Submit).place(x=250,y=300)
 
-main()
-pg.quit()
+
+work 
+root.mainloop()
