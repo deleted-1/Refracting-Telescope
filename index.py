@@ -103,7 +103,9 @@ def main():
         x += slope[0]
         y -= slope[1]
 
-    ray2 = Rays ([distance_object+int(height_object/2),450-height_object],[x,y],[center_curvature2[0],y],final_destination)#I changed the coordinates: [center_curvature2[0],destination1[1]]
+    ray2 = Rays ([distance_object+int(height_object/2),450-height_object],[x,y],[center_curvature2[0],y],final_destination)
+
+    ray3 = Rays ([distance_object+int(height_object/2),450-height_object],center_curvature1,[center_curvature2[0],y],final_destination)
     background = pg.Surface(screen.get_size())
     background = background.convert()
     background.fill((210 , 180 , 140))   
@@ -130,6 +132,7 @@ def main():
 
         ray1.run(background)
         ray2.run(background)
+        ray3.run(background)
 
         screen.blit(background, (0,0))
         screen.blit(tree, (distance_object, 450-height_object))
