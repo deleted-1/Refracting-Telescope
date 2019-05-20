@@ -2,18 +2,7 @@ import pygame as pg
 import tkinter
 import math
 
-"""
-I am too tired to explain
-what this class does
-but read through it and try to revert
-it back to how it originally was if
-you mess around with it
-
-
-But to make it short all it does is draw that second
-line you see when you run the program
-"""
-class TK:
+"""class TK:
     def __init__(self):
 
         self.main_window = tkinter.Tk()
@@ -35,7 +24,7 @@ class TK:
     def position(self):
         if self.entry1 == 1:
             pass
-my_gui = TK()
+my_gui = TK()"""
 
 
 class Rays:
