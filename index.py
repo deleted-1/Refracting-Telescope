@@ -4,6 +4,29 @@ import math
 
 
 
+"""class TK:
+    def __init__(self):
+
+        self.main_window = tkinter.Tk()
+
+        self.label1 = tkinter.Label(self.main_window, text="Type 1 for the object to be past 2 times the focal point")
+        self.label2 = tkinter.Label(self.main_window, text="Type 2 for the object to be at 2 times the focal point")
+        self.label3 = tkinter.Label(self.main_window, text="Type 3 for the object to be between 2 times the focal point and the focal point")
+        self.label4 = tkinter.Label(self.main_window, text="Type 4 for the object to be at the focal point")
+        self.entry1 = tkinter.Entry(self.main_window, text="Where would you like the image to be placed? ")
+
+        self.label1.pack()
+        self.label2.pack()
+        self.label3.pack()
+        self.label4.pack()
+        self.entry1.pack()
+
+        tkinter.mainloop()
+        self.entry1.position()
+    def position(self):
+        if self.entry1 == 1:
+            pass
+my_gui = TK()"""
 
 
 class Rays:
