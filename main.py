@@ -32,7 +32,7 @@ class Rays:
         else:   
             if self.destination1 != None:   self.change_course(background)
 
-def main(height_object=70,distance_object=140,height_objective=300,height_ocular=150,distance_objective=400,distance_ocular=600):
+def mainh(height_object=70,distance_object=140,height_objective=300,height_ocular=150,distance_objective=400,distance_ocular=600):
     screen = pg.display.set_mode((1000,900), pg.RESIZABLE)
 
     pg.display.set_caption("Refracting Telescope")
@@ -132,5 +132,5 @@ def Submit():
 
 work = Button(root, text="Work",width=30,height=5,bg="lightblue",command=Submit).place(x=250,y=300)
 """
-main()
+
 pg.quit()
