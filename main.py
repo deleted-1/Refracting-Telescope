@@ -1,6 +1,8 @@
 import pygame as pg
 import math
 
+pg.font.init()
+
 class Rays:
     
     def __init__(self,location,destination,destination1=None,destination2=None,destination3=None):
@@ -81,6 +83,10 @@ def main(height_object=70,distance_object=140,height_objective=300,height_ocular
     background = background.convert()
     background.fill((210 , 180 , 140))   
     
+    #BigSystemFont = pg.font.SysFont("Arial", 30)
+    #SmallSystemFont = pg.font.SysFont("Arial", 15)
+    #label1 = BigSystemFont.render("F", 1, (255, 255, 0))
+    #label2 = SmallSystemFont.render("O", 1, (255, 255, 0))
     pg.draw.line(background,(0,0,0),[100,450],[900, 450],3)# Boundary/Plane
     image_formed = False
 
@@ -111,6 +117,8 @@ def main(height_object=70,distance_object=140,height_objective=300,height_ocular
             screen.blit(image, intersection)
             image_formed = True
         elif image_formed:  screen.blit(image, intersection)
+        #screen.blit(label1, (350, 460))
+        #screen.blit(label2, (360, 475))
         pg.display.flip()
 
 pg.quit()
