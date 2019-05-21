@@ -1,79 +1,5 @@
 import pygame as pg
-import tkinter
 import math
-
-
-
-"""class TK:
-    def __init__(self):
-
-        self.main_window = tkinter.Tk()
-
-        self.label1 = tkinter.Label(self.main_window, text="Type 1 for the object to be past 2 times the focal point")
-        self.label2 = tkinter.Label(self.main_window, text="Type 2 for the object to be at 2 times the focal point")
-        self.label3 = tkinter.Label(self.main_window, text="Type 3 for the object to be between 2 times the focal point and the focal point")
-        self.label4 = tkinter.Label(self.main_window, text="Type 4 for the object to be at the focal point")
-        self.entry1 = tkinter.Entry(self.main_window, text="Where would you like the image to be placed? ")
-
-        self.label1.pack()
-        self.label2.pack()
-        self.label3.pack()
-        self.label4.pack()
-        self.entry1.pack()
-
-        tkinter.mainloop()
-        self.entry1.position()
-    def position(self):
-        if self.entry1 == 1:
-            pass
-my_gui = TK()"""
-import tkinter
-from tkinter import messagebox
-class ImageLocationGUI:
-    def __init__(self):
-        self.main_window = tkinter.Tk()
-        
-        self.top_frame = tkinter.Frame()
-        self.bottom_frame = tkinter.Frame()
-        
-        self.label1 = tkinter.Label(self.main_window, text="Type 1 for the object to be past 2 times the focal point")
-        self.label2 = tkinter.Label(self.main_window, text="Type 2 for the object to be at 2 times the focal point")
-        self.label3 = tkinter.Label(self.main_window, text="Type 3 for the object to be between 2 times the focal point and the focal point")
-        self.label4 = tkinter.Label(self.main_window, text="Type 4 for the object to be at the focal point")
-        self.prompt_label = tkinter.Label(self.top_frame, \
-        text="Where would you like the image to be placed? ")
-        self.kilo_entry = tkinter.Entry(self.top_frame, \
-        width=10)
-        
-        self.prompt_label.pack(side='left')
-        self.kilo_entry.pack(side='left')
-        
-        self.calc_button = tkinter.Button(self.bottom_frame, \
-        text='Submit', \
-        command=self.display)
-        self.quit_button = tkinter.Button(self.bottom_frame, \
-        text='Quit', \
-
-        command=self.main_window.quit)
-
-        
-        self.calc_button.pack(side='left')
-        self.quit_button.pack(side='left')
-        
-        self.label1.pack()
-        self.label2.pack()
-        self.label3.pack()
-        self.label4.pack()
-        self.top_frame.pack()
-        self.bottom_frame.pack()
-        
-        
-    
-    def display(self):
-        pass
-    
-image_locate = ImageLocationGUI()
-
 
 class Rays:
     
@@ -106,28 +32,23 @@ class Rays:
         else:   
             if self.destination1 != None:   self.change_course(background)
 
-#tkinter.mainloop()
-def main():
+def main(height_object=70,distance_object=140,height_objective=300,height_ocular=150,distance_objective=400,distance_ocular=600):
     screen = pg.display.set_mode((1000,900), pg.RESIZABLE)
 
     pg.display.set_caption("Refracting Telescope")
 
-    height_object = 70
-    distance_object = 200
     clock = pg.time.Clock()
     tree = pg.image.load("tree.png")
     tree = pg.transform.scale(tree, [height_object,height_object])
     tree = tree.convert()  
-    height_objective = 250
-    height_ocular = 200 
-    distance_objective = 400
-    distance_ocular = 550
+    
+    
     center_curvature1 = [distance_objective+12, 450]
     center_curvature2 = [distance_ocular+12, 450]
-    focal_objective1 = [distance_objective-int(height_objective/4),450]
-    focal_objective2 = [distance_objective+int(height_objective/4 + 25),450] 
-    focal_ocular1 = [distance_ocular-int(height_ocular/4),450] 
-    focal_ocular2 = [distance_ocular+int(height_ocular/4+25),450]  
+    focal_objective1 = [distance_objective-int(height_objective/4)-25,450]
+    focal_objective2 = [distance_objective+int(height_objective/4 + 50),450] 
+    focal_ocular1 = [distance_ocular-int(height_ocular/4)-25,450] 
+    focal_ocular2 = [distance_ocular+int(height_ocular/4+50),450]  
 
     final_destination = [focal_ocular2[0],focal_ocular2[1]]
 
@@ -149,7 +70,7 @@ def main():
         x += slope[0]
         y -= slope[1]
 
-    ray2 = Rays ([distance_object+int(height_object/2),450-height_object],[x,y],[center_curvature2[0],y],final_destination)
+    ray2 = Rays ([distance_object+int(height_object/2),450-height_object],[x-25,y],[center_curvature2[0],y],final_destination)
 
     ray3 = Rays ([distance_object+int(height_object/2),450-height_object],center_curvature1,[center_curvature2[0],y],final_destination)
     background = pg.Surface(screen.get_size())
@@ -164,7 +85,7 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:   break
 
-         
+        image_formed = False
 
         objective = pg.draw.ellipse(background,(135, 206, 235),[distance_objective,450-int(height_objective*.5),25,height_objective],0)
         ocular = pg.draw.ellipse(background,(135, 206, 235),[distance_ocular,450-int(height_ocular*.5),25,height_ocular],0)
@@ -180,8 +101,18 @@ def main():
         ray2.run(background)
         ray3.run(background)
 
+        if ray1.x >= float(final_destination[0]) and ray2.x >= float(final_destination[0]) and ray3.x >= float(final_destination[0]): break
+
+        if ray1.y <= ray2.y: 
+            image = pg.image.load("tree.png")
+            intersection = [ray1.x,ray2.y]
+            pg.transform.rotate(image,180)
+            screen.blit(image, intersection)
+
+
         screen.blit(background, (0,0))
         screen.blit(tree, (distance_object, 450-height_object))
+
         pg.display.flip()
 
 """
@@ -202,7 +133,4 @@ def Submit():
 work = Button(root, text="Work",width=30,height=5,bg="lightblue",command=Submit).place(x=250,y=300)
 """
 main()
-"""root.mainloop()"""
-
-
 pg.quit()
