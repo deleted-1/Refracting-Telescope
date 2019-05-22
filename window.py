@@ -20,7 +20,20 @@ def set_parameters():
     focal_objective=Entry(root)
     focal_ocular=Entry(root)
     len_distance=Entry(root) 
-    image = None 
+    image = None
+
+    """
+    if height_object > 70 or height_object < 0:
+        set_parameters()
+    elif distance_object > 400 or distance_object < 0:
+        set_parameters()
+    elif focal_objective > 50 or focal_objective < 0:
+        set_parameters()
+    elif focal_ocular > 20 or focal_ocular < 0:
+        set_parameters()
+    elif len_distance > 100 or len_distance < 0:
+        set_parameters()
+    """
 
     def show_diagram():
         try:
