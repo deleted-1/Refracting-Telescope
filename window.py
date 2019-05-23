@@ -1,9 +1,7 @@
 from tkinter import *
 from main import main
 
-
-
-def set_parameters():
+def set_parameters(image=None):
 
     root = Tk()
     root.title("Telescope Simulation")
@@ -20,26 +18,6 @@ def set_parameters():
     focal_objective=Entry(root)
     focal_ocular=Entry(root)
     len_distance=Entry(root) 
-    image = None
-
-    """
-    if height_object > 70 or height_object < 0:
-        set_parameters()
-    elif distance_object > 400 or distance_object < 0:
-        set_parameters()
-    elif focal_objective > 50 or focal_objective < 0:
-        set_parameters()
-    elif focal_ocular > 20 or focal_ocular < 0:
-        set_parameters()
-    elif len_distance > 100 or len_distance < 0:
-        set_parameters()
-    """
-
-    def show_diagram():
-        try:
-            main(int(height_object.get()),int(distance_object.get()),int(focal_objective.get()),int(focal_ocular.get()),int(len_distance.get()),image)
-        except ValueError:
-            Label(root, text="*Please use integer values.", font=("time new roman",10), fg='red').place(x=225,y=145)
 
     def images():
         list_image = Tk()
@@ -47,15 +25,20 @@ def set_parameters():
         list_image.geometry("500x225+300+0")
         def tree(): 
             list_image.destroy()
-            image="tree"
+            root.destroy()
+            set_parameters("tree")
+            
         def tomato():
             list_image.destroy()
-            image="tomato"
-                        
+            root.destroy()
+            set_parameters("tomato")
+                           
         Button(list_image, text="tree", width=5, command=tree).place(x=20,y=20)
         Button(list_image, text="tomato", width=5, command=tomato).place(x=20,y=45)
-        
-        "will make it so it can create multiple images"
+
+    def show_diagram():
+        try:    main(int(height_object.get()),int(distance_object.get()),int(focal_objective.get()),int(focal_ocular.get()),int(len_distance.get()),image)
+        except ValueError:  Label(root, text="*Please use integer values.", font=("time new roman",10), fg='red').place(x=225,y=145)        
     
     height_object.place(x=225,y=20)
     distance_object.place(x=340, y=45)
@@ -68,7 +51,5 @@ def set_parameters():
     Button(root, text='Images', width=5, command=images).place(x=180,y=170)
 
     mainloop()
-
- 
 
 set_parameters()
