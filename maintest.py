@@ -12,7 +12,6 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
     screen = pg.display.set_mode((1000,900), pg.RESIZABLE)
     pg.display.set_caption("Refracting Telescope")
 
-    font = pg.font.Font('freesansbold.ttf',15)
     object_ = pg.image.load("tree.png")
     object_ = pg.transform.scale(object_, [height_object,height_object])
     object_ = object_.convert()  
@@ -85,6 +84,7 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
             real_image.convert()
             intersection = 'The size of the real image is {:.2f}cm and is {:.2f}cm away from the ocular lens.'.format(height_image1,distance_ocular-distance_image1-450)
             magnefication1 = 'The magnefication of the real image is {:.2f}.'.format(magnefication1)
+            font = pg.font.Font('freesansbold.ttf',15)
             intersection = font.render(intersection, True, [0,0,0])
             magnefication1 = font.render(magnefication1, True, [0,0,0])
             screen.blit(magnefication1,[100,130])
@@ -96,5 +96,5 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
             screen.blit(magnefication1,[100,130])
 
         pg.display.flip()
-#main()
+main()
 pg.quit()
