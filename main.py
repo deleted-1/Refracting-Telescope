@@ -2,7 +2,7 @@ import pygame as pg
 from createRay import *
 
 pg.init()
-pg.font.init()
+
 
 def draw_circles(background,coordinates):
     for i in range(len(coordinates)):
@@ -11,7 +11,7 @@ def draw_circles(background,coordinates):
 def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,distance_ocular=150,distance_objective=450):
     screen = pg.display.set_mode((1000,900), pg.RESIZABLE)
     pg.display.set_caption("Refracting Telescope")
-
+    pg.font.init()
     font = pg.font.Font('freesansbold.ttf',15)
     object_ = pg.image.load("tree.png")
     object_ = pg.transform.scale(object_, [height_object,height_object])

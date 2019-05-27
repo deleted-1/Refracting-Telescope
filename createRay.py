@@ -1,7 +1,6 @@
 import pygame as pg
 
 class Rays:
-    
     def __init__(self,location,destination,destination1=None,destination2=None,destination3=None,destination4=None):
         self.location = location
         self.destination = destination
