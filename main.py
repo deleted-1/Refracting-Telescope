@@ -8,7 +8,7 @@ def draw_circles(background,coordinates):
     for i in range(len(coordinates)):
         pg.draw.circle(background,(0,0,0),coordinates[i],5)
 
-def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,distance_ocular=150,distance_objective=450):
+def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=40,distance_ocular=150,distance_objective=450):
     screen = pg.display.set_mode((1000,900), pg.RESIZABLE)
     pg.display.set_caption("Refracting Telescope")
     pg.font.init()
@@ -53,16 +53,16 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
         x_ray1 += slope_ray1[0]
         y_ray1 += slope_ray1[1]
 
-    slope_ray3 = [((center_curvature1[0])-(450-distance_object-int(height_object/4)))/60, ((center_curvature1[1])-(450-height_object))/60]
-    x_ray3 = 450-distance_object-int(height_object/4)
+    slope_ray3 = [((center_curvature1[0])-(450-distance_object-round(height_object/4)))/60, ((center_curvature1[1])-(450-height_object))/60]
+    x_ray3 = 450-distance_object-round(height_object/4)
     y_ray3 = 450-height_object
     while x_ray3 <= center_curvature2[0]:
         x_ray3 += slope_ray3[0]
         y_ray3 += slope_ray3[1]
 
-    rays.append( Rays( [450-distance_object-int(height_object/4),450-height_object] , [center_curvature1[0],450-height_object] , [x_ray1,y_ray1]) )
-    rays.append( Rays( [450-distance_object-int(height_object/4),450-height_object] , [center_curvature1[0],450+height_image1] , [center_curvature2[0],450+height_image1]) )
-    rays.append( Rays( [450-distance_object-int(height_object/4),450-height_object] , [x_ray3,y_ray3]))
+    rays.append( Rays( [450-distance_object-round(height_object/4),450-height_object] , [center_curvature1[0],450-height_object] , [x_ray1,y_ray1]) )
+    rays.append( Rays( [450-distance_object-round(height_object/4),450-height_object] , [center_curvature1[0],450+height_image1] , [center_curvature2[0],450+height_image1]) )
+    rays.append( Rays( [450-distance_object-round(height_object/4),450-height_object] , [x_ray3,y_ray3]))
 
     while True:
         clock.tick(60)     
@@ -77,19 +77,24 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
 
         if virtual_image_drawn==False and x1 >= center_curvature2[0]-3 and x2 >= center_curvature2[0]-3 and x3 >= center_curvature2[0]-3: 
             slope_ray2 = [((distance_ocular-distance_image2)-(x2))/60,((450+height_image2)-(y2))/60]
-            
-        elif x1 >= center_curvature2[0]-3 and x2 >= center_curvature2[0]-3 and x3 >= center_curvature2[0]-3: pass
+        elif x1 >= center_curvature2[0]-3 and x2 >= center_curvature2[0]-3 and x3 >= center_curvature2[0]-3:
+            screen.blit(virtual_image,[round(450+distance_image2+height_image2/8),round(450)])
 
 
         for event in pg.event.get():
             if event.type == pg.QUIT:   break
         screen.blit(background, (0,0))
-        screen.blit(object_, (450-distance_object-int(height_object/2), 450-height_object))
+        screen.blit(object_, (450-distance_object-round(height_object/2), 450-height_object))
         if real_image_drawn == False and y1 >= height_image1+450 and y2 >= height_image1+450 and y3 >= height_image1+450:
+            virtual_image_drawn = True
+            virtual_image = pg.image.load("tree.png")
+            virtual_image = pg.transform.rotate(virtual_image, 180)
+            virtual_image = pg.transform.scale(virtual_image, [round(height_image2),round(height_image2)])
+            virtual_image.convert()
             real_image_drawn = True
             real_image = pg.image.load("tree.png")
             real_image = pg.transform.rotate(real_image, 180)
-            real_image = pg.transform.scale(real_image, [int(height_image1),int(height_image1)])
+            real_image = pg.transform.scale(real_image, [round(height_image1),round(height_image1)])
             real_image.convert()
             intersection = 'The size of the real image is {:.2f}cm and is {:.2f}cm away from the ocular lens.'.format(height_image1,distance_ocular-distance_image1-450)
             magnefication1 = 'The magnefication of the real image is {:.2f}.'.format(magnefication1)
@@ -100,7 +105,7 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
             intersection1 = font.render(intersection1, True, [0,0,0])
             magnefication2 = font.render(magnefication2, True, [0,0,0])
         elif real_image_drawn == True: 
-            screen.blit(real_image,[int(450+distance_image1+height_image1/8),int(450)])
+            screen.blit(real_image,[round(450+distance_image1+height_image1/8),round(450)])
             screen.blit(intersection,[100,100])
             screen.blit(magnefication1,[100,130])
             screen.blit(intersection1,[100,160])
@@ -109,3 +114,4 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
         pg.display.flip()
 
 pg.quit()
+main()
