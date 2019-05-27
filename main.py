@@ -78,14 +78,11 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
         if virtual_image_drawn==False and x1 >= center_curvature2[0]-3 and x2 >= center_curvature2[0]-3 and x3 >= center_curvature2[0]-3: 
             slope_ray2 = [((distance_ocular-distance_image2)-(x2))/60,((450+height_image2)-(y2))/60]
             
-        elif x1 >= center_curvature2[0]-3 and x2 >= center_curvature2[0]-3 and x3 >= center_curvature2[0]-3:
+        elif x1 >= center_curvature2[0]-3 and x2 >= center_curvature2[0]-3 and x3 >= center_curvature2[0]-3: pass
 
 
         for event in pg.event.get():
             if event.type == pg.QUIT:   break
-
-        
-
         screen.blit(background, (0,0))
         screen.blit(object_, (450-distance_object-int(height_object/2), 450-height_object))
         if real_image_drawn == False and y1 >= height_image1+450 and y2 >= height_image1+450 and y3 >= height_image1+450:
@@ -107,5 +104,5 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
             screen.blit(magnefication1,[100,130])
 
         pg.display.flip()
-main()
+
 pg.quit()
