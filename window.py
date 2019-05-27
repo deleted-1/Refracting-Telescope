@@ -24,7 +24,7 @@ def set_parameters():
             if int(distance_object.get()) <= int(focal_objective.get())*2:    Label(root, text="Has to be twice focal objective!", font=("time new roman",10), fg='red').place(x=300,y=45)
             elif float((1/float(focal_objective.get())- 1/float(distance_object.get()))**-1)  < float(focal_ocular.get()):   Label(root, text="Please specify other inputs because the real image is beyond the focal of the ocular!", font=("time new roman",10), fg='red').place(x=50,y=145)
             elif int(distance_object.get()) > 200:  Label(root,text="Please choose an integer smaller or equal to 200 for object distance.", font=("time new roman",10), fg='red').place(x=350,y=45)
-            elif int(len_distance.get())-int(focal_ocular.get()) <= int(focal_objective.get()) | int(focal_ocular.get()) <= 0: Label(root, text="Please enter a larger focal ocular.", font=("time new roman",10), fg='red').place(x=325,y=95) 
+            elif int(len_distance.get())-int(focal_ocular.get()) <= int(focal_objective.get()) or int(focal_ocular.get()) <= 0: Label(root, text="Please enter a larger focal ocular.", font=("time new roman",10), fg='red').place(x=325,y=95) 
             else:   main(int(height_object.get()),int(distance_object.get()),int(focal_objective.get()),int(focal_ocular.get()),int(len_distance.get()))
         except ValueError:  Label(root, text="*Please use integer values.", font=("time new roman",10), fg='red').place(x=20,y=245)        
     

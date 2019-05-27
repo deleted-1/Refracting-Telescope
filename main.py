@@ -26,7 +26,7 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
     focal_ocular1 = [distance_ocular-focal_length2,450] 
     focal_ocular2 = [distance_ocular+25+focal_length2,450] 
     real_image_drawn = False
-    virtual_image_drawn = False
+    virtual_image_drawn = False        
 
     distance_image1 = (1/focal_length1 - 1/distance_object)**-1 
     height_image1 = (distance_image1*height_object/distance_object)
@@ -42,8 +42,8 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
 
     pg.draw.line(background,(0,0,0),[100,450],[900, 450],3)# Boundary/Plane
 
-    objective = pg.draw.ellipse(background,(135, 206, 235),[distance_objective,450-int(500*.5),25,400],0)
-    ocular = pg.draw.ellipse(background,(135, 206, 235),[distance_ocular,450-int(350*.5),25,300],0)
+    objective = pg.draw.ellipse(background,(135, 206, 235),[distance_objective,450-int(350*.5),25,350],0)
+    ocular = pg.draw.ellipse(background,(135, 206, 235),[distance_ocular,450-int(250*.5),25,250],0)
     draw_circles(background,[center_curvature1,center_curvature2,focal_objective1,focal_objective2,focal_ocular1,focal_ocular2])
 
     slope_ray1 = [((focal_objective2[0])-(center_curvature1[0]))/60, ((focal_objective2[1])-(450-height_object))/60]
@@ -60,21 +60,32 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
         x_ray3 += slope_ray3[0]
         y_ray3 += slope_ray3[1]
 
-    rays.append( Rays( [450-distance_object-int(height_object/4),450-height_object] , [center_curvature1[0],450-height_object] , [x_ray1,y_ray1] , [distance_image2,height_image2]) )
-    rays.append( Rays( [450-distance_object-int(height_object/4),450-height_object] , [center_curvature1[0],450+height_image1] , [center_curvature2[0],450+height_image1] , [distance_image2,height_image2]) )
-    rays.append( Rays( [450-distance_object-int(height_object/4),450-height_object] , [x_ray3,y_ray3] , [distance_image2,height_image2]))
+    rays.append( Rays( [450-distance_object-int(height_object/4),450-height_object] , [center_curvature1[0],450-height_object] , [x_ray1,y_ray1]) )
+    rays.append( Rays( [450-distance_object-int(height_object/4),450-height_object] , [center_curvature1[0],450+height_image1] , [center_curvature2[0],450+height_image1]) )
+    rays.append( Rays( [450-distance_object-int(height_object/4),450-height_object] , [x_ray3,y_ray3]))
 
     while True:
         clock.tick(60)     
 
-        for event in pg.event.get():
-            if event.type == pg.QUIT:   break
-
         for ray in rays: ray.run(background)
-
         y1 = rays[0].y
         y2 = rays[1].y
         y3 = rays[2].y
+        x1 = rays[0].x
+        x2 = rays[1].x
+        x3 = rays[2].x 
+
+        if virtual_image_drawn==False and x1 >= center_curvature2[0]-3 and x2 >= center_curvature2[0]-3 and x3 >= center_curvature2[0]-3: 
+            slope_ray2 = [((distance_ocular-distance_image2)-(x2))/60,((450+height_image2)-(y2))/60]
+            
+        elif x1 >= center_curvature2[0]-3 and x2 >= center_curvature2[0]-3 and x3 >= center_curvature2[0]-3:
+
+
+        for event in pg.event.get():
+            if event.type == pg.QUIT:   break
+
+        
+
         screen.blit(background, (0,0))
         screen.blit(object_, (450-distance_object-int(height_object/2), 450-height_object))
         if real_image_drawn == False and y1 >= height_image1+450 and y2 >= height_image1+450 and y3 >= height_image1+450:
@@ -96,5 +107,5 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
             screen.blit(magnefication1,[100,130])
 
         pg.display.flip()
-#main()
+main()
 pg.quit()
