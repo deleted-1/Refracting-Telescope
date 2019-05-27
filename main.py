@@ -99,11 +99,6 @@ def main(height_object=70,distance_object=120,focal_length1=50,focal_length2=20,
             magnefication1 = font.render(magnefication1, True, [0,0,0])
             intersection1 = font.render(intersection1, True, [0,0,0])
             magnefication2 = font.render(magnefication2, True, [0,0,0])
-            screen.blit(magnefication1,[100,130])
-            screen.blit(intersection,[100,100])
-            screen.blit(intersection1,[100,160])
-            screen.blit(magnefication2,[100,190])
-            screen.blit(real_image,[int(450+distance_image1+height_image1/8),int(450)])
         elif real_image_drawn == True: 
             screen.blit(real_image,[int(450+distance_image1+height_image1/8),int(450)])
             screen.blit(intersection,[100,100])
