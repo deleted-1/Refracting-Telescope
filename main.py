@@ -34,7 +34,8 @@ def main(height_object=80,distance_object=120,focal_length1=50,focal_length2=40,
     height_image2 = (distance_image2*height_image1/(distance_ocular-distance_image1-450))
 
     magnefication1 = -distance_image1/distance_object
-    magnefication2 = -distance_image2/(distance_ocular-distance_image1-450)
+    magnefication2 = -height_image2/height_image1
+    magnefication3 = -distance_image2/distance_object
 
     background = pg.Surface(screen.get_size())
     background = background.convert()
@@ -97,22 +98,25 @@ def main(height_object=80,distance_object=120,focal_length1=50,focal_length2=40,
             magnefication1 = 'The magnefication of the real image is {:.2f}.'.format(magnefication1)
             intersection1 = 'The size of the virtual image is {:.2f}cm and is {:.2f}cm away from the ocular lens.'.format(height_image2,distance_image2)
             magnefication2 = "The magnefication of the virtual image is {:.2f}.".format(magnefication2)
+            magnefication3 = "The magnefication of the virtual image to the real image is {:.2f}.".format(magnefication3)
+            magnefication3 = font.render(magnefication3, True, [0,0,0])
             intersection = font.render(intersection, True, [0,0,0])
             magnefication1 = font.render(magnefication1, True, [0,0,0])
             intersection1 = font.render(intersection1, True, [0,0,0])
             magnefication2 = font.render(magnefication2, True, [0,0,0])
         elif real_image_drawn: 
-            pg.draw.line(background,(255,255,0),[round(distance_ocular-distance_image2),450+height_image2] , [x_ray1,y_ray1],3)
-            pg.draw.line(background,(255,255,0),[round(distance_ocular-distance_image2),450+height_image2] , [x_ray3,y_ray3],3)
-            pg.draw.line(background,(255,255,0),[round(distance_ocular-distance_image2),450+height_image2] , [center_curvature2[0],450+height_image1],3)
+            pg.draw.line(background,(255,255,0),[round(distance_ocular-distance_image2)+height_image2/8,450+height_image2] , [x_ray1,y_ray1],3)
+            pg.draw.line(background,(255,255,0),[round(distance_ocular-distance_image2)+height_image2/8,450+height_image2] , [x_ray3,y_ray3],3)
+            pg.draw.line(background,(255,255,0),[round(distance_ocular-distance_image2)+height_image2/8,450+height_image2] , [center_curvature2[0],450+height_image1],3)
             screen.blit(real_image,[round(450+distance_image1+height_image1/8),round(450)])
             screen.blit(virtual_image,[round(distance_ocular-distance_image2-height_image2/8),450])
             screen.blit(intersection,[100,100])
             screen.blit(magnefication1,[100,130])
             screen.blit(intersection1,[100,160])
             screen.blit(magnefication2,[100,190])
+            screen.blit(magnefication3,[100,220])
 
         pg.display.flip()
 
 pg.quit()
-main()
+"""main()"""
