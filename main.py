@@ -115,4 +115,3 @@ def main(height_object=80,distance_object=120,focal_length1=50,focal_length2=40,
         pg.display.flip()
 
 pg.quit()
-main()
