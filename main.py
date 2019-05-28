@@ -1,13 +1,15 @@
+# I - Import and Initialize
 import pygame as pg
 from createRay import *
 
 pg.init()
 
-
+# D - Display configuration
 def draw_circles(background,coordinates):
     for i in range(len(coordinates)):
         pg.draw.circle(background,(0,0,0),coordinates[i],5)
 
+# A - Action (broken into ALTER steps)
 def main(height_object=80,distance_object=120,focal_length1=50,focal_length2=40,distance_ocular=150,distance_objective=450):
     screen = pg.display.set_mode((1000,900), pg.RESIZABLE)
     pg.display.set_caption("Refracting Telescope")
