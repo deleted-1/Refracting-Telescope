@@ -11,6 +11,7 @@ def draw_circles(background,coordinates):
 
 # A - Action (broken into ALTER steps)
 def main(height_object=80,distance_object=120,focal_length1=50,focal_length2=40,distance_ocular=150,distance_objective=450):
+    # A - Assign values to key variables
     screen = pg.display.set_mode((1000,900), pg.RESIZABLE)
     pg.display.set_caption("Refracting Telescope")
     pg.font.init()
@@ -64,8 +65,9 @@ def main(height_object=80,distance_object=120,focal_length1=50,focal_length2=40,
     rays.append( Rays( [450-distance_object-round(height_object/4),450-height_object] , [center_curvature1[0],450-height_object] , [x_ray1,y_ray1] , focal_ocular2 ) )
     rays.append( Rays( [450-distance_object-round(height_object/4),450-height_object] , [center_curvature1[0],450+height_image1] , [center_curvature2[0],450+height_image1] ,focal_ocular2) )
     rays.append( Rays( [450-distance_object-round(height_object/4),450-height_object] , [x_ray3,y_ray3],focal_ocular2))
-
+    # L - Loop
     while True:
+        # T - Timer to set frame rate
         clock.tick(60)     
 
         for ray in rays: ray.run(background)
@@ -79,10 +81,10 @@ def main(height_object=80,distance_object=120,focal_length1=50,focal_length2=40,
         """if y1 >= 450 and y2 >= 450 and y3 >= 450:
             if x1 >= center_curvature2[0] and x2 >= center_curvature2[0] and x3 >= center_curvature2[0] and real_image_drawn: break"""
 
-
+        # E - Event handling
         for event in pg.event.get():
             if event.type == pg.QUIT:   break
-
+        # R - Refresh display
         screen.blit(background, (0,0))
         screen.blit(object_, (450-distance_object-round(height_object/2), 450-height_object))
 
@@ -119,5 +121,5 @@ def main(height_object=80,distance_object=120,focal_length1=50,focal_length2=40,
             screen.blit(magnefication3,[100,220])
 
         pg.display.flip()
-
+# Close the game window
 pg.quit()

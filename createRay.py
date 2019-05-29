@@ -1,7 +1,9 @@
 import pygame as pg
 
 class Rays:
+    '''Our Rays class inherits from the Sprite class'''
     def __init__(self,location,destination,destination1=None,destination2=None,destination3=None,destination4=None):
+        #Set the distance attributes of the Ray sprites
         self.location = location
         self.destination = destination
         self.destination1 = destination1
