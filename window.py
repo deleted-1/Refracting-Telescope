@@ -2,7 +2,7 @@ from tkinter import *
 from main import main
 
 def set_parameters():
-
+    """Receives user input for the necessary values of the diagram and assigns them to variables"""
     root = Tk()
     root.title("Telescope Simulation")
     root.geometry("500x320+0+0")
@@ -20,6 +20,7 @@ def set_parameters():
     len_distance=Entry(root) 
 
     def show_diagram():
+        """Input validation adn exception handling give the user input necessary limits"""
         try:    
             if int(distance_object.get()) <= int(focal_objective.get())*2:    Label(root, text="Has to be twice focal objective!", font=("time new roman",10), fg='red').place(x=300,y=45)
             elif float((1/float(focal_objective.get())- 1/float(distance_object.get()))**-1)  < float(focal_ocular.get()):   Label(root, text="Please specify other inputs because the real image is beyond the focal of the ocular!", font=("time new roman",10), fg='red').place(x=50,y=145)
@@ -33,7 +34,7 @@ def set_parameters():
     focal_objective.place(x=300,y=120)
     focal_ocular.place(x=275,y=170)
     len_distance.place(x=295,y=220)
- 
+     
     Button(root, text='Quit', width = 5,command=root.quit).place(x=20,y=270)
     Button(root, text='Submit',width=5, command=show_diagram).place(x=100,y=270)
 

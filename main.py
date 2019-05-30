@@ -39,7 +39,7 @@ def main(height_object=80,distance_object=120,focal_length1=50,focal_length2=40,
     magnefication1 = -distance_image1/distance_object
     magnefication2 = -height_image2/height_image1
     magnefication3 = -distance_image2/distance_object
-
+# E - Entities
     background = pg.Surface(screen.get_size())
     background = background.convert()
     background.fill((210 , 180 , 140))   
@@ -123,3 +123,4 @@ def main(height_object=80,distance_object=120,focal_length1=50,focal_length2=40,
         pg.display.flip()
 # Close the game window
 pg.quit()
+main()
